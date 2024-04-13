@@ -12,11 +12,13 @@ export default {
         xl: "1220px",
         "2xl": "1220px",
       },
-      // colors: {
-      //   purpleBank: "#8318EE",
-      //   blueBank: "#230490",
-      //   grayBank: "#E4E4E4",
-      // },
+      colors: {
+        blueMovie: "#12182B",
+        blueMovie100: "#324170",
+        greenMovie: "#69FAB4",
+        yellowMovie: "#FFC700",
+        cianMovie: "#E7ECFF",
+      },
     },
   },
   plugins: [],
