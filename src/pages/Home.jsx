@@ -12,7 +12,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [topMovies, setTopMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const { loading, error, request } = useFetch();
+  const { request } = useFetch();
 
   useEffect(() => {
     const getTopRatedMovies = async (url) => {
@@ -52,7 +52,6 @@ const Home = () => {
 
   return (
     <section>
-      {loading && <Loader />}
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search
@@ -61,15 +60,20 @@ const Home = () => {
             placeholder="Pesquisar os melhores "
           />
         </div>
-        <div className="grid grid-cols-1 mt-40 gap-10 px-5 lg:px-0 lg:grid-cols-3">
+        {searchTerm.length === 0 && (
+          <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
+            Exibindo os melhores filmes da TMDB
+          </h2>
+        )}
+        <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-3">
           {filteredMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} showLink={true} />
+            <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
         {filteredMovies.length === 0 && (
-          <p className="text-center text-gray-500 py-52">
-            Nenhum dos melhores filmes encontrados.
-          </p>
+          <div className="flex justify-center items-center">
+            <Loader />
+          </div>
         )}
       </div>
     </section>

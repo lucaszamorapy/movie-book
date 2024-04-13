@@ -17,20 +17,20 @@ const useFetch = () => {
       json = await response.json();
       if (response.ok === false) throw new Error(json.message);
       if (response.ok) {
-        console.log("Fecth realizado com sucesso");
+        console.log("Fetch realizado com sucesso");
       }
     } catch (error) {
       console.error("Erro na solicitação:", error);
       setResponseMessage("Erro ao fazer a solicitação");
     } finally {
-      setData(json);
+      setData(json); // Aqui você pode definir os dados retornado como 'json'
       setLoading(false);
       return { response, json };
     }
   }, []);
 
   return {
-    data,
+    data, // Agora 'data' contém o json retornado
     loading,
     error,
     request,

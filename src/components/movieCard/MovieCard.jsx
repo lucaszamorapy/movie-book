@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 const imagesURL = import.meta.env.VITE_IMG;
 
-const MovieCard = ({ movie, showLink }) => {
+const MovieCard = ({ movie, showLink = true }) => {
   return (
     <div className="flex flex-col shadow-lg">
       <img

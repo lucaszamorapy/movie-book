@@ -33,7 +33,6 @@ const SearchPage = () => {
 
   return (
     <section>
-      {loading && <Loader />}
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search
@@ -45,16 +44,17 @@ const SearchPage = () => {
         <h1 className="text-center text-3xl py-10">
           Exibindo resultados para {query}
         </h1>
+        {loading && (
+          <div className="flex justify-center items-center">
+            <Loader />
+          </div>
+        )}
         <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-3">
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} showLink={true} />
           ))}
         </div>
-        {movies.length === 0 && (
-          <p className="text-center text-gray-500 py-52">
-            <Loader />
-          </p>
-        )}
+        {movies.length === 0 && <Loader />}
       </div>
     </section>
   );
