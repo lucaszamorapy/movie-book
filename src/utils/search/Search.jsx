@@ -1,12 +1,28 @@
+import { useState } from "react";
 import { IoMdSearch } from "react-icons/io";
+import { useNavigate } from "react-router";
 
 const Search = ({ value, onChange, placeholder }) => {
+  const [searchItem, setSearchItem] = useState("");
+  const navigate = useNavigate();
+
   const handleInputChange = (event) => {
+    setSearchItem(event.target.value);
     onChange(event.target.value);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!searchItem) return;
+    onChange(searchItem); // Atualiza o searchTerm no componente SearchPage
+    navigate(`/searchpage?q=${searchItem}`);
+  };
+
   return (
-    <div className="flex justify-center items-center relative">
+    <form
+      className="flex justify-center items-center relative"
+      onSubmit={handleSubmit}
+    >
       <IoMdSearch
         className="absolute left-3 top-1/2 transform -translate-y-1/2"
         size={18}
@@ -19,7 +35,7 @@ const Search = ({ value, onChange, placeholder }) => {
         value={value}
         onChange={handleInputChange}
       />
-    </div>
+    </form>
   );
 };
 

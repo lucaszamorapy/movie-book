@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch";
 import MovieCard from "../components/movieCard/MovieCard";
 
 import Search from "../utils/search/Search";
+import Loader from "../utils/loader/Loader";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -51,7 +52,7 @@ const Home = () => {
 
   return (
     <section>
-      {loading && "Carregando..."}
+      {loading && <Loader />}
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search
