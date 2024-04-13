@@ -18,11 +18,11 @@ const MovieCard = ({ movie, showLink = true }) => {
           </div>
         </div>
         {showLink && (
-          <button className="bg-[#1B2440] tracking-widest text-white rounded-lg py-2 mt-5 hover:bg-[#090C16] duration-300 ease-in-out">
-            <Link to={`/movie/${movie.id}`} className="uppercase font-semibold">
+          <Link to={`/movie/${movie.id}`}>
+            <button className="bg-[#1B2440] tracking-widest uppercase font-semibold w-full text-white rounded-lg py-2 mt-5 hover:bg-[#090C16] duration-300 ease-in-out">
               Saber mais
-            </Link>
-          </button>
+            </button>
+          </Link>
         )}
       </div>
     </div>
