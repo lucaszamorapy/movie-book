@@ -70,11 +70,7 @@ const Home = () => {
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
-        {filteredMovies.length === 0 && (
-          <div className="flex justify-center items-center">
-            <Loader />
-          </div>
-        )}
+        {filteredMovies.length === 0 && <Loader />}
       </div>
     </section>
   );

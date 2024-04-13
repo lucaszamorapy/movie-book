@@ -3,7 +3,10 @@ import "./Loader.css";
 
 const Loader = () => {
   return (
-    <div className="loader loader--style2" title="1">
+    <div
+      className="loader loader--style2 flex justify-center items-center"
+      title="1"
+    >
       <svg
         version="1.1"
         id="loader-1"

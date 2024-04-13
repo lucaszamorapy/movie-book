@@ -34,59 +34,58 @@ const MoviePage = () => {
 
   return (
     <section>
-      {movie && (
-        <div className="container">
-          {loading && (
-            <div className="flex justify-center items-center">
-              <Loader />
-            </div>
-          )}
-          <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
-            Detalhes do Filme: {movie.title}
-          </h2>
-          <div className="flex flex-col px-5 gap-10 lg:grid lg:grid-cols-3 lg:px-0">
-            <MovieCard movie={movie} showLink={false} />
-            <div className="flex gap-10 flex-col col-span-2">
-              <div className="flex flex-col gap-5">
-                <h1 className="font-semibold text-greenMovie">Descrição:</h1>
-                <div className="flex items-center">
-                  <span className="h-full border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
-                    {movie.overview}
-                  </span>
+      <div className="container">
+        {movie ? (
+          <>
+            <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
+              Detalhes do Filme: {movie.title}
+            </h2>
+            <div className="flex flex-col px-5 gap-10 lg:grid lg:grid-cols-3 lg:px-0">
+              <MovieCard movie={movie} showLink={false} />
+              <div className="flex gap-10 flex-col col-span-2">
+                <div className="flex flex-col gap-5">
+                  <h1 className="font-semibold text-greenMovie">Descrição:</h1>
+                  <div className="flex items-center">
+                    <span className="h-full border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
+                      {movie.overview}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col gap-5">
-                <h1 className="font-semibold text-greenMovie">Genêro:</h1>
-                <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
-                  {movie.genres.map((genre, index) => (
-                    <p key={index}>{genre.name}</p>
-                  ))}
+                <div className="flex flex-col gap-5">
+                  <h1 className="font-semibold text-greenMovie">Genêro:</h1>
+                  <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
+                    {movie.genres.map((genre, index) => (
+                      <p key={index}>{genre.name}</p>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col gap-5">
-                <h1 className="font-semibold text-greenMovie">Orçamento:</h1>
-                <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
-                  <p>{formatCurrency(movie.budget)}</p>
+                <div className="flex flex-col gap-5">
+                  <h1 className="font-semibold text-greenMovie">Orçamento:</h1>
+                  <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
+                    <p>{formatCurrency(movie.budget)}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col gap-5">
-                <h1 className="font-semibold text-greenMovie">Receita:</h1>
-                <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
-                  <p>{formatCurrency(movie.revenue)}</p>
+                <div className="flex flex-col gap-5">
+                  <h1 className="font-semibold text-greenMovie">Receita:</h1>
+                  <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
+                    <p>{formatCurrency(movie.revenue)}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col gap-5">
-                <h1 className="font-semibold text-greenMovie">
-                  Tempo de duração:
-                </h1>
-                <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
-                  <p>{movie.runtime} minutos</p>
+                <div className="flex flex-col gap-5">
+                  <h1 className="font-semibold text-greenMovie">
+                    Tempo de duração:
+                  </h1>
+                  <div className="h-full flex gap-2 items-center border-l-2 px-4 border-greenMovie mr-2 font-normal text-white">
+                    <p>{movie.runtime} minutos</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </>
+        ) : (
+          <Loader />
+        )}
+      </div>
     </section>
   );
 };
