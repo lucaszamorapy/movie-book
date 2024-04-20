@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import ImageSkeleton from "../../utils/imageSkeleton/ImageSkeleton";
 const imagesURL = import.meta.env.VITE_IMG;
 
 const MovieCard = ({ movie, showLink = true }) => {
   return (
     <div className="flex flex-col shadow-lg">
-      <img
-        src={imagesURL + movie.poster_path}
-        alt={movie.title}
-        className="rounded-t-lg"
-      />
+      <ImageSkeleton src={imagesURL + movie.poster_path} alt={movie.title} />
       <div className="flex flex-col py-4 px-4  rounded-b-lg bg-blueMovie100 text-black min-h-[100px]">
         <div className="flex justify-between">
           <h2 className="text-white">{movie.title}</h2>
