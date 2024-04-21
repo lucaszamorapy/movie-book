@@ -12,6 +12,7 @@ const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const query = searchParams.get("q");
   const { loading, request } = useFetch();
 
@@ -21,6 +22,7 @@ const SearchPage = () => {
       const { json } = await request(searchQueryURL);
       if (json && json.results) {
         setMovies(json.results);
+        // setFilteredMovies(json.results);
       }
     };
 
@@ -30,18 +32,29 @@ const SearchPage = () => {
   const handleSearchChange = (value) => {
     //Pegando o value do handleInputChange, para se tornar reativo e filtrado
     setSearchTerm(value);
-    filterMovies(value);
+    if (value.length === 1) {
+      filterMoviesByInitial(value);
+    } else {
+      filterMovies(value);
+    }
+  };
+
+  const filterMoviesByInitial = (initial) => {
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().startsWith(initial.toLowerCase())
+    );
+    setFilteredMovies(filtered);
   };
 
   const filterMovies = (term) => {
     const filtered = movies.filter((movie) =>
       movie.title.toLowerCase().includes(term.toLowerCase())
     );
-    setMovies(filtered);
+    setFilteredMovies(filtered);
   };
 
   return (
-    <section>
+    <section className="mt-20">
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search
@@ -59,11 +72,11 @@ const SearchPage = () => {
           </div>
         )}
         <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-3">
-          {movies.map((movie) => (
+          {filteredMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} showLink={true} />
           ))}
         </div>
-        {movies.length === 0 && !loading && (
+        {filteredMovies.length === 0 && !loading && (
           <p className="text-center mt-8">Nenhum resultado encontrado.</p>
         )}
       </div>

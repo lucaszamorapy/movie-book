@@ -51,7 +51,7 @@ const Home = () => {
   };
 
   return (
-    <section>
+    <section className="mt-20">
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search
