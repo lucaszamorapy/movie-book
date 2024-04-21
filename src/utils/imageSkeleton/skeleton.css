@@ -1,9 +1,16 @@
 img {
   opacity: 0;
-  transition: 0.2s;
+  transition: opacity 0.2s;
+  display: block;
+  max-width: 100%;
 }
 
 .skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(90deg, #cecece 0px, #fff 50%, #cecece 100%);
   background-color: #eee;
   background-size: 200%;

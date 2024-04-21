@@ -1,7 +1,7 @@
 import React from "react";
 import "./skeleton.css";
 
-const ImageSkeleton = ({ alt, ...props }) => {
+const ImageSkeleton = ({ alt, src, ...props }) => {
   const [skeleton, setSkeleton] = React.useState(true);
 
   const handleLoad = ({ target }) => {
@@ -10,14 +10,13 @@ const ImageSkeleton = ({ alt, ...props }) => {
   };
 
   return (
-    <div>
-      {skeleton && <div className="skeleton h-full"></div>}
+    <div className="relative">
+      {skeleton && <div className="skeleton"></div>}
       <img
-        onLoad={handleLoad}
-        className="rounded-t-lg
-       "
-        src=""
+        className="rounded-t-lg"
+        src={src}
         alt={alt}
+        onLoad={handleLoad}
         {...props}
       />
     </div>
