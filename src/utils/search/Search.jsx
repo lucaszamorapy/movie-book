@@ -14,7 +14,6 @@ const Search = ({ value, onChange, placeholder }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!searchItem) return;
-    onChange(searchItem); // Atualiza o searchTerm no componente SearchPage
     navigate(`/searchpage?q=${searchItem}`);
   };
 

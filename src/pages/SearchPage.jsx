@@ -28,7 +28,16 @@ const SearchPage = () => {
   }, [query]); // Agora a chamada da API será feita toda vez que 'query' mudar
 
   const handleSearchChange = (value) => {
+    //Pegando o value do handleInputChange, para se tornar reativo e filtrado
     setSearchTerm(value);
+    filterMovies(value);
+  };
+
+  const filterMovies = (term) => {
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(term.toLowerCase())
+    );
+    setMovies(filtered);
   };
 
   return (
@@ -54,7 +63,9 @@ const SearchPage = () => {
             <MovieCard key={movie.id} movie={movie} showLink={true} />
           ))}
         </div>
-        {movies.length === 0 && <Loader />}
+        {movies.length === 0 && !loading && (
+          <p className="text-center mt-8">Nenhum resultado encontrado.</p>
+        )}
       </div>
     </section>
   );
