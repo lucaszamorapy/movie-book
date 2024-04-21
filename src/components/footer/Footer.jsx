@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className="bg-gray-400 bg-opacity-10 mt-16">
+    <section className="bg-gray-400 bg-opacity-10 mt-16 bottom-0 fixed w-full">
       <div className="container">
         <div className="flex flex-col justify-center gap-2 items-center py-5 lg:flex-row">
           <p className="opacity-10">Alguns direitos reservados </p>{" "}
