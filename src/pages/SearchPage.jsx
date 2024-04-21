@@ -22,7 +22,7 @@ const SearchPage = () => {
       const { json } = await request(searchQueryURL);
       if (json && json.results) {
         setMovies(json.results);
-        // setFilteredMovies(json.results);
+        setFilteredMovies(json.results);
       }
     };
 
