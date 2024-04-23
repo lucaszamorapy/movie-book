@@ -20,21 +20,20 @@ const Home = () => {
       const url = `${moviesURL}top_rated?${apiKey}&page=${page}`;
       const { json } = await request(url);
       if (json && json.results) {
-        setTopMovies((prevMovies) => {
+        setTopMovies((topMovies) => {
+          //topMovies é o valor anterior do useState, no caso array vazia []
           // Filtrar filmes para evitar repetição de IDs
           const uniqueMovies = json.results.filter(
-            (movie) =>
-              !prevMovies.some((prevMovie) => prevMovie.id === movie.id) //Quero que igual seja falso e o diferente seja true, por isso o !
+            (movie) => !topMovies.some((topMovie) => topMovie.id === movie.id) //Quero que igual seja falso e o diferente seja true, por isso o !
           );
-          return [...prevMovies, ...uniqueMovies];
+          return [...topMovies, ...uniqueMovies];
         });
-        setFilteredMovies((prevMovies) => {
+        setFilteredMovies((topMovies) => {
           // Filtrar filmes para evitar repetição de IDs
           const uniqueMovies = json.results.filter(
-            (movie) =>
-              !prevMovies.some((prevMovie) => prevMovie.id === movie.id)
+            (movie) => !topMovies.some((topMovie) => topMovie.id === movie.id)
           );
-          return [...prevMovies, ...uniqueMovies];
+          return [...topMovies, ...uniqueMovies];
         });
       }
     };
@@ -66,7 +65,7 @@ const Home = () => {
   };
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    setPage(page + 1);
   };
 
   return (
