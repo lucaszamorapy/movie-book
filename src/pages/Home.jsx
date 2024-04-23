@@ -12,20 +12,35 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [topMovies, setTopMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [page, setPage] = useState(1);
   const { request } = useFetch();
 
   useEffect(() => {
-    const getTopRatedMovies = async (url) => {
+    const getTopRatedMovies = async () => {
+      const url = `${moviesURL}top_rated?${apiKey}&page=${page}`;
       const { json } = await request(url);
       if (json && json.results) {
-        setTopMovies(json.results);
-        setFilteredMovies(json.results);
+        setTopMovies((prevMovies) => {
+          // Filtrar filmes para evitar repetição de IDs
+          const uniqueMovies = json.results.filter(
+            (movie) =>
+              !prevMovies.some((prevMovie) => prevMovie.id === movie.id) //Quero que igual seja falso e o diferente seja true, por isso o !
+          );
+          return [...prevMovies, ...uniqueMovies];
+        });
+        setFilteredMovies((prevMovies) => {
+          // Filtrar filmes para evitar repetição de IDs
+          const uniqueMovies = json.results.filter(
+            (movie) =>
+              !prevMovies.some((prevMovie) => prevMovie.id === movie.id)
+          );
+          return [...prevMovies, ...uniqueMovies];
+        });
       }
     };
 
-    const topRatedUrl = `${moviesURL}top_rated?${apiKey}`;
-    getTopRatedMovies(topRatedUrl);
-  }, []);
+    getTopRatedMovies();
+  }, [request, page]);
 
   const handleSearchChange = (value) => {
     setSearchTerm(value);
@@ -50,6 +65,10 @@ const Home = () => {
     setFilteredMovies(filtered);
   };
 
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
   return (
     <section className="mt-20">
       <div className="container">
@@ -57,20 +76,34 @@ const Home = () => {
           <Search
             value={searchTerm}
             onChange={handleSearchChange}
-            placeholder="Pesquisar os melhores "
+            placeholder="Pesquisar os melhores"
           />
         </div>
-        {searchTerm.length === 0 && (
-          <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
-            Exibindo os melhores filmes da TMDB
-          </h2>
+        {filteredMovies.length > 0 ? (
+          <>
+            {searchTerm.length === 0 && (
+              <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
+                Exibindo os melhores filmes da TMDB
+              </h2>
+            )}
+            <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-4">
+              {filteredMovies.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))}
+            </div>
+
+            <div className="flex justify-center mt-5">
+              <button
+                onClick={handleLoadMore}
+                className="bg-[#1B2440] tracking-widest uppercase font-semibold px-5 text-white rounded-lg py-2 mt-5 hover:bg-[#090C16] duration-300 ease-in-out"
+              >
+                Carregar Mais Filmes
+              </button>
+            </div>
+          </>
+        ) : (
+          <Loader />
         )}
-        <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-3">
-          {filteredMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-        {filteredMovies.length === 0 && <Loader />}
       </div>
     </section>
   );

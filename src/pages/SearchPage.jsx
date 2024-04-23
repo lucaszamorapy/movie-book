@@ -71,7 +71,7 @@ const SearchPage = () => {
             <Loader />
           </div>
         )}
-        <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-3">
+        <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-4">
           {filteredMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} showLink={true} />
           ))}

@@ -7,7 +7,7 @@ const MovieCard = ({ movie, showLink = true }) => {
   return (
     <div className="flex flex-col shadow-lg">
       <ImageSkeleton src={imagesURL + movie.poster_path} alt={movie.title} />
-      <div className="flex flex-col py-4 px-4  rounded-b-lg bg-blueMovie100 text-black min-h-[100px]">
+      <div className="flex flex-col py-4 px-4 h-full rounded-b-lg bg-blueMovie100 text-black min-h-[100px]">
         <div className="flex justify-between">
           <h2 className="text-white">{movie.title}</h2>
           <div className="flex items-center gap-2 text-white">
