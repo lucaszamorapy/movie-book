@@ -63,7 +63,7 @@ const SearchPage = () => {
             placeholder="Pesquise os filmes"
           />
         </div>
-        <h1 className="text-center text-3xl py-10">
+        <h1 className="text-center px-5 text-3xl py-10 lg:px-0">
           Exibindo resultados para {query}
         </h1>
         {loading && (

@@ -15,7 +15,6 @@ const MoviePage = () => {
   useEffect(() => {
     const getMovie = async (url) => {
       const { json } = await request(url);
-      console.log(json);
       if (json) {
         setMovie(json); // Definir o filme como o objeto completo retornado pela API
       }
