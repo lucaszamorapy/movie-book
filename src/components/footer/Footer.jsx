@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex flex-col justify-center gap-2 items-center py-5 lg:flex-row">
           <p className="opacity-15">Todos os direitos reservados </p>{" "}
           <span className="opacity-10 hidden lg:block">|</span>
-          <p className="opacity-10">
+          <p className="opacity-15">
             Desenvolvido por{" "}
             <Link to={"https://github.com/lucaszamorapy"}>Lucas Zamora</Link>
           </p>
