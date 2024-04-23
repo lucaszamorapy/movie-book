@@ -54,7 +54,7 @@ const SearchPage = () => {
   };
 
   return (
-    <section className="mt-20">
+    <section className="mt-20 animeLeft">
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search

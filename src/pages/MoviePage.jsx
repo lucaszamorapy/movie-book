@@ -34,7 +34,7 @@ const MoviePage = () => {
 
   return (
     <section>
-      <div className="container">
+      <div className="container animeLeft">
         {movie ? (
           <>
             <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
