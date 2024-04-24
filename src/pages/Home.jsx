@@ -71,23 +71,20 @@ const Home = () => {
   };
 
   return (
-    <section className="mt-10 animeLeft">
-      {loading && <Loader />}
+    <section className="mt-10 animeLeft px-5 lg:px-0">
       <Header />
       <div className="container">
-        <div className="px-5 lg:px-0">
-          <Search
-            value={searchTerm}
-            onChange={handleSearchChange}
-            placeholder="Pesquisar os melhores"
-          />
-        </div>
+        <Search
+          value={searchTerm}
+          onChange={handleSearchChange}
+          placeholder="Pesquisar os melhores"
+        />
         {filteredMovies.length > 0 ? (
           <>
-            <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
+            <h2 className="uppercase font-semibold text-4xl text-center py-16">
               Exibindo os melhores filmes da TMDB
             </h2>
-            <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-4">
+            <div className="grid grid-cols-1 mt-10 gap-10 lg:grid-cols-4">
               {filteredMovies.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />
               ))}

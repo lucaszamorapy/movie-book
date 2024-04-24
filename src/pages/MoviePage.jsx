@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch";
 import { useEffect, useState } from "react";
 import Loader from "../utils/loader/Loader";
 import MovieCard from "../components/movieCard/MovieCard";
+import ButtonBack from "../utils/buttonBack/ButtonBack";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -32,14 +33,17 @@ const MoviePage = () => {
   };
 
   return (
-    <section>
+    <section className="px-5 lg:px-0">
       <div className="container animeLeft">
         {movie ? (
           <>
-            <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
-              Detalhes do Filme: {movie.title}
-            </h2>
-            <div className="flex flex-col px-5 gap-10 lg:grid lg:grid-cols-3 lg:px-0">
+            <div className="flex justify-center items-center gap-5">
+              <ButtonBack />
+              <h2 className="uppercase font-semibold text-4xl py-16">
+                Detalhes do Filme: {movie.title}
+              </h2>
+            </div>
+            <div className="flex flex-col gap-10 lg:grid lg:grid-cols-3">
               <MovieCard movie={movie} showLink={false} />
               <div className="flex gap-10 flex-col col-span-2">
                 <div className="flex flex-col gap-5">

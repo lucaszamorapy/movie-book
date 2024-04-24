@@ -12,7 +12,7 @@
 /*
   Set the color of the icon
 */
-svg path,
-svg rect {
+.color-svg path,
+.color-svg rect {
   fill: #69fab4;
 }

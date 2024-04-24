@@ -3,11 +3,13 @@ import Home from "./pages/Home";
 import Footer from "./components/footer/Footer";
 import SearchPage from "./pages/SearchPage";
 import MoviePage from "./pages/MoviePage";
+import ScrollToTopOnPageChange from "./utils/ScrollToTopOnPageChange";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTopOnPageChange />
         <main className="AppBody">
           <Routes>
             <Route path="/" element={<Home />} />

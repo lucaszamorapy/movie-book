@@ -55,25 +55,19 @@ const SearchPage = () => {
   };
 
   return (
-    <section className="mt-10 animeLeft">
+    <section className="mt-10 animeLeft px-5 lg:px-0">
       <Header />
       <div className="container">
-        <div className="px-5 lg:px-0">
-          <Search
-            value={searchTerm}
-            onChange={handleSearchChange}
-            placeholder="Pesquise os filmes"
-          />
-        </div>
-        <h1 className="text-center px-5 text-3xl py-10 lg:px-0">
+        <Search
+          value={searchTerm}
+          onChange={handleSearchChange}
+          placeholder="Pesquise os filmes"
+        />
+        <h1 className="text-center text-3xl py-10">
           Exibindo resultados para {query}
         </h1>
-        {loading && (
-          <div className="flex justify-center items-center">
-            <Loader />
-          </div>
-        )}
-        <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-4">
+        {loading && <Loader />}
+        <div className="grid grid-cols-1 mt-10 gap-10 lg:grid-cols-4">
           {filteredMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} showLink={true} />
           ))}
