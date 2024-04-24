@@ -7,3 +7,42 @@ body {
   background-color: #12182b;
   color: #fff;
 }
+
+.animeLeft {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft 0.3s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh + 7rem);
+}
+
+.AppBody {
+  flex: 1;
+}
+
+.font-color {
+  /* Define o gradiente de fundo */
+  background: linear-gradient(
+    90deg,
+    rgba(137, 205, 166, 1) 0%,
+    rgba(1, 181, 227, 1) 100%
+  );
+
+  /* Define a cor de fonte */
+  color: transparent; /* Torna a cor da fonte transparente */
+
+  /* Aplica o gradiente como texto */
+  -webkit-background-clip: text;
+  background-clip: text;
+}

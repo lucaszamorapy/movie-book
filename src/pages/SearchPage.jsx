@@ -4,6 +4,7 @@ import Search from "../utils/search/Search";
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Loader from "../utils/loader/Loader";
+import Header from "../components/header/Header";
 
 const searchURL = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -55,6 +56,7 @@ const SearchPage = () => {
 
   return (
     <section className="mt-20 animeLeft">
+      <Header />
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search

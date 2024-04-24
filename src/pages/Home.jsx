@@ -4,6 +4,7 @@ import MovieCard from "../components/movieCard/MovieCard";
 
 import Search from "../utils/search/Search";
 import Loader from "../utils/loader/Loader";
+import Header from "../components/header/Header";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -70,6 +71,7 @@ const Home = () => {
 
   return (
     <section className="mt-20 animeLeft">
+      <Header />
       <div className="container">
         <div className="px-5 lg:px-0">
           <Search

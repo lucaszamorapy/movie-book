@@ -1,4 +1,4 @@
-img {
+.img-skeleton {
   opacity: 0;
   transition: opacity 0.2s;
   display: block;
