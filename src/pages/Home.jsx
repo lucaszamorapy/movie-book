@@ -14,7 +14,7 @@ const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const { request } = useFetch();
+  const { request, loading, setLoading } = useFetch();
 
   useEffect(() => {
     const getTopRatedMovies = async () => {
@@ -66,11 +66,13 @@ const Home = () => {
   };
 
   const handleLoadMore = () => {
+    setLoading(true);
     setPage(page + 1);
   };
 
   return (
-    <section className="mt-20 animeLeft">
+    <section className="mt-10 animeLeft">
+      {loading && <Loader />}
       <Header />
       <div className="container">
         <div className="px-5 lg:px-0">
@@ -82,24 +84,25 @@ const Home = () => {
         </div>
         {filteredMovies.length > 0 ? (
           <>
-            {searchTerm.length === 0 && (
-              <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
-                Exibindo os melhores filmes da TMDB
-              </h2>
-            )}
+            <h2 className="uppercase px-5 font-semibold text-4xl text-center py-16 lg:px-0">
+              Exibindo os melhores filmes da TMDB
+            </h2>
             <div className="grid grid-cols-1 mt-10 gap-10 px-5 lg:px-0 lg:grid-cols-4">
               {filteredMovies.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />
               ))}
             </div>
-
             <div className="flex justify-center mt-5">
-              <button
-                onClick={handleLoadMore}
-                className="bg-[#1B2440] tracking-widest uppercase font-semibold px-5 text-white rounded-lg py-2 mt-5 hover:bg-[#090C16] duration-300 ease-in-out"
-              >
-                Carregar Mais Filmes
-              </button>
+              {loading ? (
+                <Loader />
+              ) : (
+                <button
+                  onClick={handleLoadMore}
+                  className="bg-[#1B2440] tracking-widest uppercase font-semibold px-5 text-white rounded-lg py-2 mt-5 hover:bg-[#090C16] duration-300 ease-in-out"
+                >
+                  Carregar Mais Filmes
+                </button>
+              )}
             </div>
           </>
         ) : (

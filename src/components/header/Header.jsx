@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <section className="mb-20">
+    <section className="mb-10">
       <div className="container">
         <div className="flex flex-col justify-center items-center gap-5 lg:flex-row">
           <Link to={"/"}>
