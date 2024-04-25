@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Loader from "../utils/loader/Loader";
 import Header from "../components/header/Header";
+import Select from "../utils/select/Select";
 
 const searchURL = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -12,6 +13,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectTerm, setSelectTerm] = useState("");
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const query = searchParams.get("q");
@@ -31,12 +33,31 @@ const SearchPage = () => {
   }, [query]); // Agora a chamada da API será feita toda vez que 'query' mudar
 
   const handleSearchChange = (value) => {
-    //Pegando o value do handleInputChange, para se tornar reativo e filtrado
     setSearchTerm(value);
     if (value.length === 1) {
       filterMoviesByInitial(value);
     } else {
       filterMovies(value);
+    }
+  };
+
+  const handleSelectChange = ({ target }) => {
+    const value = target.value;
+    setSelectTerm(value);
+    filterMoviesBySelect(value);
+  };
+
+  const filterMoviesBySelect = (option) => {
+    if (option !== "") {
+      const sortedMovies = [...movies];
+      if (option === "crescente") {
+        sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (option === "decrescente") {
+        sortedMovies.sort((a, b) => b.title.localeCompare(a.title));
+      }
+      setFilteredMovies(sortedMovies);
+    } else {
+      setFilteredMovies(movies);
     }
   };
 
@@ -58,11 +79,14 @@ const SearchPage = () => {
     <section className="mt-10 animeLeft px-5 lg:px-0">
       <Header />
       <div className="container">
-        <Search
-          value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Pesquise os filmes"
-        />
+        <div className="flex justify-center items-center flex-col gap-5 lg:flex-row">
+          <Search
+            value={searchTerm}
+            onChange={handleSearchChange}
+            placeholder="Pesquisar os melhores"
+          />
+          <Select value={selectTerm} onChange={handleSelectChange} />
+        </div>
         <h1 className="text-center text-3xl py-10">
           Exibindo resultados para {query}
         </h1>

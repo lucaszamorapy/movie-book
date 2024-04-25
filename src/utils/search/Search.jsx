@@ -19,7 +19,7 @@ const Search = ({ value, onChange, placeholder }) => {
 
   return (
     <form
-      className="flex justify-center items-center relative"
+      className="flex justify-center items-center relative w-full"
       onSubmit={handleSubmit}
     >
       <IoMdSearch
@@ -29,7 +29,7 @@ const Search = ({ value, onChange, placeholder }) => {
       />
       <input
         type="text"
-        className="pl-10 text-md w-full py-3 rounded-md bg-gray-400 bg-opacity-10  outline-none"
+        className="pl-10 text-md w-full py-3 rounded-md bg-gray-400 bg-opacity-10 outline-none"
         placeholder={placeholder}
         value={value}
         onChange={handleInputChange}

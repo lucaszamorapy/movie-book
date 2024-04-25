@@ -19,6 +19,7 @@ const MoviePage = () => {
       if (json) {
         setMovie(json); // Definir o filme como o objeto completo retornado pela API
       }
+      console.log(json);
     };
 
     const movieUrl = `${moviesURL}${id}?${apiKey}`;
